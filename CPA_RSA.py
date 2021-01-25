@@ -4,17 +4,20 @@ import matplotlib.pyplot as plt
 
 print("Welcome to Axel's and Yassine's baby RSA !")
 
-def mod_inverse(x,m):
-    for n in range(m):
-        if (x * n) % m == 1:
-            return n
-            break
+def hamming_weigth(dec): return bin(dec).count('1')
 
-        elif n == m - 1:
-            return "Null"
-        else:
-            continue
+def mat_hyp(msg_list, n):
+    # 65536 key hyoptheses
+    # result is a 65536 x 1000 matrice with a hypothese for each msg for each hypothese of key
+    result = []
 
+    for d in range(65536):
+        print(100*d/65536, "%")
+        result.append([])
+        for msg in msg_list:
+            result[d].append(hamming_weigth(pow(int(msg),d)%n))
+
+    return result
 
 def solution():
     N = 95559869
@@ -67,9 +70,9 @@ def generate(name, number):
     return result
 
 # find N in the files 95559869
-N = open("Ressources/N.txt", "r").readlines()[0]
+N = int(open("Ressources/N.txt", "r").readlines()[0])
 print(f"N : {N}")
-solution()
+# solution()
 
 # get the curves from the files
 curves = generate("curve_", 1000)
@@ -82,8 +85,10 @@ messages = generate("msg_", 1000)
 E = 65535
 
 # show the results
-plt.plot(x_curves, curves[0])
-plt.axis([0, len(x_curves), 0, max(curves[0])])
-plt.xlabel("time")
-plt.ylabel("consommation")
-plt.show()
+# plt.plot(x_curves, curves[0])
+# plt.axis([0, len(x_curves), 0, max(curves[0])])
+# plt.xlabel("time")
+# plt.ylabel("consommation")
+# plt.show()
+
+print(mat_hyp(messages, N))

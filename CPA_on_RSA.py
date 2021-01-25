@@ -1,6 +1,7 @@
 import os
 import matplotlib.pyplot as plt
 
+print("Welcome to Axel's and Yassine's baby RSA !")
 
 def curve():
     curves = []
@@ -21,14 +22,16 @@ def generate(name, number):
                     result.append(int(line.split()[0]))
     return result
 
-Y = generate("curve_", 5)
-X = [k for k in range(len(Y[0]))]
-print(Y[0])
-print(X)
+# find N in the files
+N = open("Ressources/N.txt", "r").readlines()[0]
+print(f"N : {N}")
 
-plt.plot(X, Y[0])
-plt.axis([0, len(X), 0, max(Y[0])])
+# get the curves from the files
+curves = generate("curve_", 999)
+X = [k for k in range(len(curves[0]))]
+
+plt.plot(X, curves[0])
+plt.axis([0, len(X), 0, max(curves[0])])
 plt.xlabel("time")
 plt.ylabel("consommation")
 plt.show()
-

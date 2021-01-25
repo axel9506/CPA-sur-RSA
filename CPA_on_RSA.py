@@ -28,10 +28,13 @@ print(f"N : {N}")
 
 # get the curves from the files
 curves = generate("curve_", 999)
-X = [k for k in range(len(curves[0]))]
+x_curves = [k for k in range(len(curves[0]))]
 
-plt.plot(X, curves[0])
-plt.axis([0, len(X), 0, max(curves[0])])
+# get the messages from the files
+messages = generate("msg_", 999)
+
+plt.plot(x_curves, curves[0])
+plt.axis([0, len(x_curves), 0, max(curves[0])])
 plt.xlabel("time")
 plt.ylabel("consommation")
 plt.show()

@@ -15,6 +15,23 @@ def solution():
     print("Q: ", Q) 
 
 
+def mod_inverse(x,m):
+    for n in range(m):
+        if (x * n) % m == 1:
+            return n
+            break
+
+        elif n == m - 1:
+            return "Null"
+        else:
+            continue
+
+def pgcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return pgcd(b, a % b)
+
 def curve():
     curves = []
 

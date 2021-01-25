@@ -6,15 +6,14 @@ def curve():
     curves = []
 
     for curve_name in os.listdir('Ressources'):
-        curves.append("Ressources/" + curve_name)
+        curves.append(curve_name)
     
-    return curves
+    print("curves:\n", curves)
 
 def generate(name, number):
-    curves = curve()
     result = []
     for i in range(number):
-        with open(curves[i], "r") as file:
+        with open("Ressources/" + name + str(i) + ".txt", "r") as file:
             for line in file:
                 if name == "curve_":
                     result.append([float(X) for X in line.split()])

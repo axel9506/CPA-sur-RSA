@@ -4,15 +4,30 @@ import matplotlib.pyplot as plt
 
 print("Welcome to Axel's and Yassine's baby RSA !")
 
+def mod_inverse(x,m):
+    for n in range(m):
+        if (x * n) % m == 1:
+            return n
+            break
+
+        elif n == m - 1:
+            return "Null"
+        else:
+            continue
+
+
 def solution():
     N = 95559869
     E = 65535
     P = 2
     while (N%P != 0):
         P = sympy.nextprime(P)
-    Q = int(N/P)
+    Q = N//P
+    PHI = (P-1)*(Q-1)
+    D = mod_inverse(E,PHI)
     print("P: ", P)
     print("Q: ", Q) 
+    print("D: ", D)
 
 
 def curve():
